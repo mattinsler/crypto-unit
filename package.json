@@ -1,6 +1,6 @@
 {
   "name": "crypto-unit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Small library for dealing with crypto units (acts like Satoshis)",
   "license": "MIT",
   "main": "dist/index.js",

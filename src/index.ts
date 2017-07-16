@@ -56,7 +56,7 @@ function parseDecimalFormat(value: string): [string, string, string, number | un
 export class CryptoUnit {
   private value: bignum;
 
-  constructor(value: CryptoUnitCompatible | bignum) {
+  constructor(value: CryptoUnitCompatible) {
     if (!(this instanceof CryptoUnit)) { return new CryptoUnit(value); }
 
     if (CryptoUnit.isCryptoUnit(value)) {
@@ -66,7 +66,7 @@ export class CryptoUnit {
     } else if (util.isNumber(value)) {
       this.value = new bignum(value);
     } else if (bignum.isBigNum(value)) {
-      this.value = value;
+      this.value = value as any;
     } else {
       throw new Error(`Invalid input type passed to new CryptoUnit(...). Must be CryptoUnit | number | string.`);
     }
@@ -81,8 +81,6 @@ export class CryptoUnit {
     if (util.isNumber(value)) { value = value.toString(); }
 
     let [negative, whole, decimal, exponent] = parseDecimalFormat(value);
-    // console.log('fromDecimal', value);
-    // console.log({ negative, whole, decimal, exponent });
 
     if (exponent) {
       if (exponent < 0) {
@@ -100,14 +98,11 @@ export class CryptoUnit {
       }
     }
 
-    // console.log({ negative, whole, decimal, exponent });
-    // console.log(`${negative}${whole}${rpad(decimal, 8, '0')}`);
-
-    return new CryptoUnit(new bignum(`${negative}${whole}${rpad(decimal, 8, '0')}`, 10));
+    return new CryptoUnit(new bignum(`${negative}${whole}${rpad(decimal, 8, '0')}`, 10) as any);
   }
 
   static fromBuffer(buffer: Buffer): CryptoUnit {
-    return new CryptoUnit(bignum.fromBuffer(buffer));
+    return new CryptoUnit(bignum.fromBuffer(buffer) as any);
   }
 
   static compare(lhs: CryptoUnitCompatible, rhs: CryptoUnitCompatible): number {
@@ -131,12 +126,12 @@ export class CryptoUnit {
   }
 
   static random(upperBound: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(new CryptoUnit(upperBound).value.rand());
+    return new CryptoUnit(new CryptoUnit(upperBound).value.rand() as any);
   }
 
   private b(value: CryptoUnitCompatible): bignum | number | string {
-    return CryptoUnit.isCryptoUnit(value) ? value.value : value;
-  } 
+    return CryptoUnit.isCryptoUnit(value) ? value.value : value as any;
+  }
 
   inspect(): string {
     return `<CryptoUnit ${this.value.toString(10)}>`;
@@ -170,47 +165,47 @@ export class CryptoUnit {
   }
 
   plus(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.add(this.b(other)));
+    return new CryptoUnit(this.value.add(this.b(other)) as any);
   }
 
   minus(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.sub(this.b(other)));
+    return new CryptoUnit(this.value.sub(this.b(other)) as any);
   }
 
   times(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.mul(this.b(other)));
+    return new CryptoUnit(this.value.mul(this.b(other)) as any);
   }
 
   dividedBy(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.div(this.b(other)));
+    return new CryptoUnit(this.value.div(this.b(other)) as any);
   }
 
   bitwiseAnd(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.and(this.b(other)));
+    return new CryptoUnit(this.value.and(this.b(other)) as any);
   }
 
   bitwiseOr(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.or(this.b(other)));
+    return new CryptoUnit(this.value.or(this.b(other)) as any);
   }
 
   bitwiseXor(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.xor(this.b(other)));
+    return new CryptoUnit(this.value.xor(this.b(other)) as any);
   }
 
   bitshiftLeft(bits: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.shiftLeft(this.b(bits)));
+    return new CryptoUnit(this.value.shiftLeft(this.b(bits)) as any);
   }
 
   bitshiftRight(bits: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.shiftRight(this.b(bits)));
+    return new CryptoUnit(this.value.shiftRight(this.b(bits)) as any);
   }
 
   mod(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.mod(this.b(other)));
+    return new CryptoUnit(this.value.mod(this.b(other)) as any);
   }
 
   pow(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.pow(this.b(other)));
+    return new CryptoUnit(this.value.pow(this.b(other)) as any);
   }
 
   equalTo(other: CryptoUnitCompatible): boolean {
@@ -250,14 +245,14 @@ export class CryptoUnit {
   }
 
   abs(): CryptoUnit {
-    return new CryptoUnit(this.value.abs());
+    return new CryptoUnit(this.value.abs() as any);
   }
 
   absoluteValue(): CryptoUnit {
-    return new CryptoUnit(this.value.abs());
+    return new CryptoUnit(this.value.abs() as any);
   }
 
   negate(): CryptoUnit {
-    return new CryptoUnit(this.value.neg());
+    return new CryptoUnit(this.value.neg() as any);
   }
 }
