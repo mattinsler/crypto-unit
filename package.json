@@ -6,8 +6,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "ts-pub build",
-    "prepublish": "yarn run build"
+    "build": "ts-pub build"
   },
   "keywords": [],
   "author": "Matt Insler <matt.insler@gmail.com>",
