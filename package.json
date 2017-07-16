@@ -1,0 +1,25 @@
+{
+  "name": "crypto-unit",
+  "version": "0.0.1",
+  "description": "Small library for dealing with crypto units (acts like Satoshis)",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "ts-pub build",
+    "prepublish": "yarn run build"
+  },
+  "keywords": [],
+  "author": "Matt Insler <matt.insler@gmail.com>",
+  "repository": "mattinsler/crypto-unit",
+  "dependencies": {
+    "bignum": "0.12.5"
+  },
+  "devDependencies": {
+    "@types/bignum": "0.0.29",
+    "@types/node": "8.0.7",
+    "ts-node": "3.1.0",
+    "ts-pub": "0.0.4",
+    "typescript": "2.4.1"
+  }
+}
