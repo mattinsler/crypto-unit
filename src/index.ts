@@ -109,6 +109,22 @@ export class CryptoUnit {
     return new CryptoUnit(lhs).compare(rhs);
   }
 
+  static max(...values: CryptoUnitCompatible[]): CryptoUnit {
+    const units: CryptoUnit[] = values.map(v => new CryptoUnit(v));
+    
+    return units.slice(1).reduce((current, next) => {
+      return next.greaterThan(current) ? next : current;
+    }, units[0]);
+  }
+
+  static min(...values: CryptoUnitCompatible[]) {
+    const units: CryptoUnit[] = values.map(v => new CryptoUnit(v));
+    
+    return units.slice(1).reduce((current, next) => {
+      return next.lessThan(current) ? next : current;
+    }, units[0]);
+  }
+
   static gt(lhs: CryptoUnitCompatible, rhs: CryptoUnitCompatible): boolean {
     return new CryptoUnit(lhs).gt(rhs);
   }

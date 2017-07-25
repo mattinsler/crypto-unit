@@ -30,3 +30,6 @@ assert(new CryptoUnit(123).equalTo('123'));
 assert(new CryptoUnit(123).equalTo(new CryptoUnit(123)));
 assert.deepEqual(new CryptoUnit(123), CryptoUnit.fromBuffer(new CryptoUnit(123).toBuffer()));
 assert.deepEqual(CryptoUnit.fromDecimal(123), CryptoUnit.fromBuffer(new CryptoUnit(12300000000).toBuffer()));
+
+assert(CryptoUnit.max(1, CryptoUnit.fromDecimal('3.22'), 3).equalTo(322000000));
+assert(CryptoUnit.min(1, CryptoUnit.fromDecimal('3.22'), 3).equalTo(1));
