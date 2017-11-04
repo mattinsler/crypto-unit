@@ -176,6 +176,10 @@ export class CryptoUnit {
     return this.value.toBuffer({ endian: 'big', size: 8 });
   }
 
+  valueOf(): string {
+    return this.value.toString(10);
+  }
+
   compare(other: CryptoUnitCompatible): number {
     return this.value.cmp(this.b(other));
   }
@@ -189,11 +193,11 @@ export class CryptoUnit {
   }
 
   times(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.mul(this.b(other)) as any);
+    return new CryptoUnit(this.value.mul(this.b(other)).toString().slice(0, -8) as any);
   }
 
   dividedBy(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.div(this.b(other)) as any);
+    return new CryptoUnit(this.value.div(this.b(other)).toString() + '00000000' as any);
   }
 
   bitwiseAnd(other: CryptoUnitCompatible): CryptoUnit {

@@ -33,3 +33,46 @@ assert.deepEqual(CryptoUnit.fromDecimal(123), CryptoUnit.fromBuffer(new CryptoUn
 
 assert(CryptoUnit.max(1, CryptoUnit.fromDecimal('3.22'), 3).equalTo(322000000));
 assert(CryptoUnit.min(1, CryptoUnit.fromDecimal('3.22'), 3).equalTo(1));
+
+// plus
+
+assert.equal(
+  CryptoUnit.fromDecimal(10).toString(),
+  CryptoUnit.fromDecimal(5).plus(CryptoUnit.fromDecimal(5)).toString()
+);
+
+assert.equal(
+  CryptoUnit.fromDecimal(10).toString(),
+  CryptoUnit.fromDecimal(9.005).plus(CryptoUnit.fromDecimal(.995)).toString()
+);
+
+// minus
+
+assert.equal(
+  CryptoUnit.fromDecimal(10).toString(),
+  CryptoUnit.fromDecimal(100).minus(CryptoUnit.fromDecimal(90)).toString()
+);
+
+assert.equal(
+  CryptoUnit.fromDecimal(10).toString(),
+  CryptoUnit.fromDecimal(10.000001).minus(CryptoUnit.fromDecimal(.000001)).toString()
+);
+
+// times
+
+assert.equal(
+  CryptoUnit.fromDecimal(10).toString(),
+  CryptoUnit.fromDecimal(100).times(CryptoUnit.fromDecimal(0.1)).toString()
+);
+
+// dividedBy
+
+assert.equal(
+  CryptoUnit.fromDecimal(10).toString(),
+  CryptoUnit.fromDecimal(100).dividedBy(CryptoUnit.fromDecimal(10)).toString()
+);
+
+assert.equal(
+  CryptoUnit.fromDecimal(1000).toString(),
+  CryptoUnit.fromDecimal(100).dividedBy(CryptoUnit.fromDecimal(0.1)).toString()
+);
