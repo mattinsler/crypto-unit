@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { CryptoUnit } from './dist';
+import { CryptoUnit } from './src';
 
 assert.equal('554', new CryptoUnit(554).toString());
 assert.equal('-554', new CryptoUnit(-554).toString());
@@ -75,4 +75,14 @@ assert.equal(
 assert.equal(
   CryptoUnit.fromDecimal(1000).toString(),
   CryptoUnit.fromDecimal(100).dividedBy(CryptoUnit.fromDecimal(0.1)).toString()
+);
+
+assert.equal(
+  CryptoUnit.fromDecimal(.00031999).toString(),
+  CryptoUnit.fromDecimal(3.19999999).dividedBy(CryptoUnit.fromDecimal(10000)).toString()
+);
+
+assert.equal(
+  CryptoUnit.fromDecimal(.00000319).toString(),
+  CryptoUnit.fromDecimal(0.03199999).dividedBy(CryptoUnit.fromDecimal(10000)).toString()
 );

@@ -197,7 +197,7 @@ export class CryptoUnit {
   }
 
   dividedBy(other: CryptoUnitCompatible): CryptoUnit {
-    return new CryptoUnit(this.value.div(this.b(other)).toString() + '00000000' as any);
+    return new CryptoUnit(new bignum(this.toString() + '00000000', 10).div(this.b(other)) as any);
   }
 
   bitwiseAnd(other: CryptoUnitCompatible): CryptoUnit {
