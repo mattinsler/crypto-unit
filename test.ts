@@ -24,6 +24,8 @@ for (let x = 0; x < 30; ++x) {
 
 assert.equal('0.43000000', CryptoUnit.fromDecimal(.43).toDecimalString());
 assert.equal('430.00000000', CryptoUnit.fromDecimal(430).toDecimalString());
+assert.equal('-0.43000000', CryptoUnit.fromDecimal(-.43).toDecimalString());
+assert.equal('-430.00000000', CryptoUnit.fromDecimal(-430).toDecimalString());
 
 assert(new CryptoUnit(123).equalTo(123));
 assert(new CryptoUnit(123).equalTo('123'));

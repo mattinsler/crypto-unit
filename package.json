@@ -1,6 +1,6 @@
 {
   "name": "crypto-unit",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Small library for dealing with crypto units (acts like Satoshis)",
   "license": "MIT",
   "main": "dist/index.js",
@@ -16,9 +16,9 @@
   },
   "devDependencies": {
     "@types/bignum": "0.0.29",
-    "@types/node": "8.0.7",
-    "ts-node": "3.1.0",
-    "ts-pub": "0.0.4",
-    "typescript": "2.4.1"
+    "@types/node": "8.5.2",
+    "ts-node": "4.1.0",
+    "ts-pub": "0.0.5",
+    "typescript": "2.6.2"
   }
 }

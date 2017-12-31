@@ -158,10 +158,11 @@ export class CryptoUnit {
   }
 
   toDecimalString(): string {
-    const str = lpad(this.toString(10), 8, '0');
+    const negative = this.lt(0);
+    const str = lpad(this.abs().toString(10), 8, '0');
     const whole = str.slice(0, -8);
     const decimal = str.slice(-8);
-    return `${whole ? '' : '0'}${whole}.${decimal}`;
+    return `${negative ? '-' : ''}${whole ? '' : '0'}${whole}.${decimal}`;
   }
 
   toNumber(): number {
